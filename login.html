@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 1. Website ki basic settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 2. Browser tab ka title -->
+    <title>SkillBridge Login</title>
+
+    <!-- 3. CSS Styling -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4ff;
+            color: #172554;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #dbe3f0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .password-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .password-row input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .small-btn {
+            border: none;
+            background: #e0eaff;
+            color: #1d4ed8;
+            padding: 10px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: #e0eaff;
+            color: #1d4ed8;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 22px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+
+        #message {
+            margin-top: 15px;
+            color: #166534;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+        }
+
+        .signup a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 4. Login Box -->
+    <div class="login-box">
+
+        <h1>SkillBridge</h1>
+        <p class="subtitle">Welcome Back! Login to Continue</p>
+
+        <form id="loginForm">
+
+            <!-- 5. Email ID -->
+            <label for="email">Email ID</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                required
+            >
+
+            <!-- 6. Password -->
+            <label for="password">Password</label>
+
+            <div class="password-row">
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    minlength="8"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="small-btn"
+                    onclick="togglePassword()"
+                >Show</button>
+            </div>
+            <!-- 7. Generate Password -->
+            <button
+                type="button"
+                class="generate-btn"
+                onclick="generatePassword()"
+            >
+                🔐 Generate Password
+            </button>
+
+            <p id="message" aria-live="polite"></p>
+
+            <!-- 8. Login Button -->
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <!-- 9. Create Profile Link -->
+        <p class="signup">
+            New Student?
+            <a href="profile.html">Create Profile</a>
+        </p>
+
+    </div>
+
+    <!-- 10. JavaScript -->
+    <script>
+
+        // Password Show/Hide
+        function togglePassword() {
+            const password = document.getElementById("password");
+            const button = document.querySelector(".small-btn");
+
+            if (password.type === "password") {
+                password.type = "text";
+                button.textContent = "Hide";
+            } else {
+                password.type = "password";
+                button.textContent = "Show";
+            }
+        }
+
+        // Generate Secure Password
+        function generatePassword() {
+            const upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+            const lower = "abcdefghijkmnopqrstuvwxyz";
+            const numbers = "23456789";
+            const symbols = "@#$%&*!";
+
+            const all = upper + lower + numbers + symbols;
+
+            function randomIndex(max) {
+                const array = new Uint32Array(1);
+                const limit = Math.floor(4294967296 / max) * max;
+
+                do {
+                    crypto.getRandomValues(array);
+                } while (array[0] >= limit);
+
+                return array[0] % max;
+            }
+
+            // Har category se ek character
+            const chars = [
+                upper[randomIndex(upper.length)],
+                lower[randomIndex(lower.length)],
+                numbers[randomIndex(numbers.length)],
+                symbols[randomIndex(symbols.length)]
+            ];
+
+            // 8 additional random characters
+            for (let i = 0; i < 8; i++) {
+                chars.push(all[randomIndex(all.length)]);
+            }
+
+            // Characters ko shuffle karna
+            for (let i = chars.length - 1; i > 0; i--) {
+                const j = randomIndex(i + 1);
+                [chars[i], chars[j]] = [chars[j], chars[i]];
+            }
+
+            // Password field mein show karna
+            document.getElementById("password").value = chars.join("");
+            document.getElementById("password").type = "text";
+
+            document.querySelector(".small-btn").textContent = "Hide";
+
+            document.getElementById("message").textContent =
+                "Password generated successfully!";
+        }
+
+        // Login Form Demo
+        document.getElementById("loginForm")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                document.getElementById("message").textContent =
+                    "Demo only: Real login needs backend authentication.";
+            });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Job Opportunities</title>
+
+    <style>
+        /* 1. Basic page setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #071126;
+            color: white;
+        }
+
+        /* 2. Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: #0b1730;
+            border-bottom: 1px solid #243b61;
+        }
+
+        .logo {
+            color: #60a5fa;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #dbeafe;
+            text-decoration: none;
+        }
+
+        /* 3. Main container */
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 45px 25px;
+        }
+
+        /* 4. Heading */
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .heading h1 {
+            font-size: clamp(30px, 5vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        .heading h1 span {
+            color: #60a5fa;
+        }
+
+        .heading p {
+            color: #a9bad5;
+            line-height: 1.8;
+        }
+
+        /* 5. Search and filter */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #294365;
+            border-radius: 8px;
+            background: #10203d;
+            color: white;
+            font-size: 15px;
+        }
+
+        input::placeholder {
+            color: #9aabc5;
+        }
+
+        /* 6. Job cards grid */
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        /* 7. Job card */
+        .job-card {
+            padding: 25px;
+            background: linear-gradient(145deg, #122342, #0b1730);
+            border: 1px solid #243b61;
+            border-radius: 15px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            border-color: #60a5fa;
+        }
+
+        .job-type {
+            display: inline-block;
+            padding: 7px 12px;
+            background: #17365c;
+            color: #93c5fd;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .job-card h2 {
+            margin: 18px 0 10px;
+            font-size: 22px;
+            color: #f1f5ff;
+        }
+
+        .company {
+            color: #60a5fa;
+            margin-bottom: 12px;
+        }
+
+        .details {
+            color: #a9bad5;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .skills {
+            margin: 15px 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* 8. Apply button */
+        .apply-btn {
+            display: block;
+            width: 100%;
+            margin-top: 18px;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* 9. No results message */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #a9bad5;
+        }
+        /* 10. Navigation links */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        /* 11. Footer */
+        footer {
+            padding: 25px;
+            text-align: center;
+            color: #8295b5;
+            border-top: 1px solid #243b61;
+        }
+
+        /* 12. Mobile responsive */
+        @media (max-width: 700px) {
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            .container {
+                padding: 30px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 13. Navigation -->
+    <nav>
+        <div class="logo">SkillBridge</div>
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <!-- 14. Main section -->
+    <main class="container">
+
+        <section class="heading">
+            <h1>Explore <span>Opportunities</span></h1>
+
+            <p>
+                Discover job openings and internships
+                that match your skills and career goals.
+            </p>
+        </section>
+
+        <!-- 15. Search and filter -->
+        <div class="filters">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search job title, company or skill..."
+            >
+
+            <select id="typeFilter">
+                <option value="all">All Opportunities</option>
+                <option value="Internship">Internship</option>
+                <option value="Full-time">Full-time</option>
+            </select>
+
+        </div>
+
+        <!-- 16. Job cards -->
+        <section class="job-grid" id="jobGrid">
+
+            <!-- Job 1 -->
+            <article class="job-card" data-type="Internship">
+
+                <span class="job-type">Internship</span>
+
+                <h2>Frontend Developer Intern</h2>
+
+                <p class="company">Demo Company A</p>
+
+                <p class="details">
+                    Location: Remote<br>
+                    Experience: Beginner
+                </p>
+
+                <p class="skills">
+                    <strong>Skills:</strong>
+                    HTML, CSS, JavaScript, React
+                </p>
+
+                <a href="https://www.linkedin.com/jobs/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="apply-btn">
+                    Explore Jobs →
+                </a>
+
+            </article>
+
+            <!-- Job 2 -->
+            <article class="job-card" data-type="Internship">
+
+                <span class="job-type">Internship</span>
+
+                <h2>Python Developer Intern</h2>
+
+                <p class="company">Demo Company B</p>
+
+                <p class="details">
+                    Location: Remote<br>
+                    Experience: Beginner
+                </p>
+
+                <p class="skills">
+                    <strong>Skills:</strong>
+                    Python, Git, Problem Solving
+                </p>
+
+                <a href="https://www.linkedin.com/jobs/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="apply-btn">
+                    Explore Jobs →
+                </a>
+
+            </article>
+
+            <!-- Job 3 -->
+            <article class="job-card" data-type="Full-time">
+
+                <span class="job-type">Full-time</span>
+
+                <h2>Junior Software Developer</h2>
+
+                <p class="company">Demo Company C</p>
+
+                <p class="details">
+                    Location: Hybrid<br>
+                    Experience: Entry-level
+                </p>
+
+                <p class="skills">
+                    <strong>Skills:</strong>
+                    C++, DSA, Programming
+                </p>
+                <a href="https://www.linkedin.com/jobs/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="apply-btn">
+                    Explore Jobs →
+                </a>
+
+            </article>
+
+            <!-- Job 4 -->
+            <article class="job-card" data-type="Internship">
+
+                <span class="job-type">Internship</span>
+
+                <h2>AI/ML Intern</h2>
+
+                <p class="company">Demo Company D</p>
+
+                <p class="details">
+                    Location: Remote<br>
+                    Experience: Beginner
+                </p>
+
+                <p class="skills">
+                    <strong>Skills:</strong>
+                    Python, NumPy, Machine Learning
+                </p>
+
+                <a href="https://www.linkedin.com/jobs/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="apply-btn">
+                    Explore Jobs →
+                </a>
+
+            </article>
+
+        </section>
+
+        <!-- 17. No results -->
+        <p class="no-results" id="noResults">
+            No opportunities found. Try another search.
+        </p>
+
+        <!-- 18. Navigation -->
+        <a href="learning-path.html" class="back-link">
+            ← Back to Learning Path
+        </a>
+
+        <a href="team.html" class="back-link">
+            Meet Our Team →
+        </a>
+
+    </main>
+
+    <!-- 19. Footer -->
+    <footer>
+        © 2026 SkillBridge | Job Opportunities Demo
+    </footer>
+
+    <!-- 20. JavaScript -->
+    <script>
+
+        // Get search and filter elements
+        const searchInput = document.getElementById("searchInput");
+        const typeFilter = document.getElementById("typeFilter");
+        const jobCards = document.querySelectorAll(".job-card");
+        const noResults = document.getElementById("noResults");
+
+        // Search and filter jobs
+        function filterJobs() {
+
+            const searchText = searchInput.value.toLowerCase();
+            const selectedType = typeFilter.value;
+
+            let visibleCount = 0;
+
+            jobCards.forEach(function(card) {
+
+                const cardText = card.textContent.toLowerCase();
+                const jobType = card.dataset.type;
+
+                const matchesSearch =
+                    cardText.includes(searchText);
+
+                const matchesType =
+                    selectedType === "all" ||
+                    jobType === selectedType;
+
+                if (matchesSearch && matchesType) {
+
+                    card.style.display = "block";
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            // Show message when no jobs match
+            if (visibleCount === 0) {
+                noResults.style.display = "block";
+            } else {
+                noResults.style.display = "none";
+            }
+        }
+
+        // Run filter when user types
+        searchInput.addEventListener("input", filterJobs);
+
+        // Run filter when type changes
+        typeFilter.addEventListener("change", filterJobs);
+
+    </script>
+
+</body>
+</html>

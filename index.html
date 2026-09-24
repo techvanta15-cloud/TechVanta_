@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SKILL BRIDGE</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    rgba(1, 42, 83, 0.7),
+                    rgba(12, 5, 112, 0.7)
+                ),
+                url("SKILL BRIDGE.png");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            padding: 40px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 25px;
+
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #d9ecff;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .flow span {
+            background: #1680c8;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 22px;
+            color: #8fd3ff;
+        }
+
+        .buttons {
+            margin-top: 30px;
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            color: white;
+
+            padding: 14px 22px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #0877bd,
+                #18a0e8
+            );
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .buttons a:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .about {
+            margin-top: 30px;
+            padding: 20px;
+
+            background: rgba(241, 10, 10, 0.2);
+
+            border-radius: 15px;
+
+            line-height: 1.7;
+            color: #e9f5ff;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #b8d9ed;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>SKILL BRIDGE</h1>
+
+        <p class="tagline">
+            AI-Guided Platform for Skill Analysis,
+            Personalized Learning, Mentorship and
+            Industry Opportunities
+        </p>
+
+
+        <!-- SYSTEM FLOW -->
+
+        <div class="flow">
+
+            <span>Profile</span>
+
+            <div class="arrow">→</div>
+
+            <span>Skill Gap</span>
+
+            <div class="arrow">→</div>
+
+            <span>Learning Path</span>
+
+            <div class="arrow">→</div>
+            <span>Mentorship</span>
+            <div class="arrow">→</div>
+            <span>Job Opportunity</span>
+
+        </div>
+
+
+        <!-- PAGE LINKS -->
+
+        <div class="buttons">
+
+            <a href="login.html">
+                PROFILE
+            </a>
+
+            <a href="Skill-analysis.html">
+                SKILL GAP
+            </a>
+
+            <a href="learning-path.html">
+                LEARNING PATH
+            </a>
+
+            <a href="mentorship.html">
+                MENTORSHIP
+            </a>
+
+            <a href="jobopprtunity.html">
+                JOB OPPORTUNITY
+            </a>
+
+        </div>
+
+        <!-- ABOUT -->
+
+        <div class="about">
+
+            <h2>About Skill Bridge</h2>
+
+            <br>
+            <p>
+                Skill Bridge is an AI-guided platform that
+                analyzes student skills and identifies skill gaps.
+                It provides personalized learning paths,
+                mentorship and relevant internship or job
+                opportunities.
+            </p>
+        </div>
+        <footer>
+            Smart India Hackathon 2026 | Skill Bridge
+        </footer>
+    </div>
+
+</body>
+</html>

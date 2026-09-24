@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Website ka title -->
+    <title>Skill Bridge - TechVanta_</title>
+
+    <style>
+
+        /* Puri website ka basic design */
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background-color: #071b2b;
+            color: white;
+            text-align: center;
+        }
+
+        /* Main heading */
+        h1 {
+            color: #4db8ff;
+            margin-bottom: 10px;
+        }
+
+        /* Heading ke neeche ka text */
+        .subtitle {
+            color: #b8d9ee;
+            margin-bottom: 30px;
+        }
+
+        /* Team ke cards ko arrange karega */
+        .team-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* Har member ka card */
+        .member {
+            background-color: #126da5;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Team Leader ka card thoda highlight */
+        .leader {
+            grid-column: 1 / 3;
+            background-color: #1689ca;
+        }
+
+        /* Member number */
+        .number {
+            font-size: 14px;
+            color: #cceeff;
+            margin-bottom: 8px;
+        }
+
+        /* Member ka icon */
+        .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        /* Member ka naam */
+        h2 {
+            margin: 8px;
+            color: white;
+        }
+
+        /* Member ka role */
+        .role {
+            color: #9ee1ff;
+            font-weight: bold;
+        }
+
+        /* Work aur skills */
+        .info {
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        /* Home button */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 22px;
+            background-color: #1689ca;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        /* Mouse le jaane par button */
+        .back-button:hover {
+            background-color: #0d6fa8;
+        }
+
+        /* Mobile screen ke liye */
+        @media (max-width: 700px) {
+
+            .team-container {
+                grid-template-columns: 1fr;
+            }
+
+            .leader {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main heading -->
+    <h1>👥 TechVanta</h1>
+
+    <p class="subtitle">
+        Skill Bridge Development Team
+    </p>
+
+
+    <!-- Team ke saare members -->
+    <div class="team-container">
+
+
+        <!-- MEMBER 1 : TEAM LEADER -->
+        <div class="member leader">
+
+            <div class="9241125307">01</div>
+
+            <div class="icon">👑</div>
+
+            <h2>Adil Ansari</h2>
+
+            <div class="role">
+                TEAM LEADER
+            </div>
+
+            <div class="info">
+                <b>Work:</b> Team Management & Project Planning
+                <br>
+                <b>Skills:</b> Leadership, Communication, Presentation , python
+            </div>
+
+        </div>
+
+
+        <!-- MEMBER 2 : YOU -->
+        <div class="member">
+
+            <div class="8005665131">02</div>
+
+            <div class="icon">💻</div>
+
+            <h2>Raj Shekhar Azad</h2>
+
+            <div class="role">
+                FRONTEND DEVELOPER
+            </div>
+
+            <div class="info">
+                <b>Work:</b> Website UI & Frontend Development
+                <br>
+                <b>Skills:</b> HTML, CSS, JavaScript,React.js ,
+            </div>
+
+        </div>
+
+
+        <!-- MEMBER 3 -->
+        <div class="member">
+
+            <div class="6263348285">03</div>
+
+            <div class="icon">⚙️</div>
+
+            <h2>Kritika Tiwari</h2>
+
+            <div class="role">
+                BACKEND DEVELOPER
+            </div>
+
+            <div class="info">
+                <b>Skills:</b> Presentation
+            </div>
+
+        </div>
+
+
+        <!-- MEMBER 4 -->
+        <div class="member">
+
+            <div class="8817461180">04</div>
+            <div class="icon">🤖</div>
+            <h2>Harsh Panday</h2>
+            <div class="role">
+                AI / ML DEVELOPER
+            </div>
+
+            <div class="info">
+                <b>Work:</b> Skill Analysis & AI Model
+                <b>Skills:</b> Python
+            </div>
+
+        </div>
+
+
+        <!-- MEMBER 5 -->
+        <div class="member">
+
+            <div class="8629967039">05</div>
+
+            <div class="icon">🗄️</div>
+
+            <h2>Aman Kahar</h2>
+
+            <div class="role">
+                DATABASE DEVELOPER
+            </div>
+
+            <div class="info">
+                <b>Skills:</b> Communication
+            </div>
+
+        </div>
+
+
+        <!-- MEMBER 6 -->
+        <div class="member">
+
+            <div class="6263923290">06</div>
+
+            <div class="icon">🎨</div>
+
+            <h2>Sarthak Tiwari</h2>
+            <div class="role">
+                UI/UX & DOCUMENTATION
+            </div>
+
+            <div class="info">
+                
+                <b>Skills:</b> supporting member
+            </div>
+        </div>
+    </div>
+    <!-- Home page par wapas -->
+    <a href="TechVanta.html" class="back-button">
+        ← Back to Home
+    </a>
+</body>
+
+</html>

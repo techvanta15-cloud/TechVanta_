@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge | Our Team</title>
+
+    <style>
+        /* 1. Basic page setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #071126;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* 2. Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: #0b1730;
+            border-bottom: 1px solid #1c3157;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+        nav a {
+            color: #dbeafe;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* 3. Main section */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 25px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 18px;
+            background: #13284b;
+            color: #60a5fa;
+            border: 1px solid #294b7c;
+            border-radius: 30px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .heading h1 {
+            margin-top: 22px;
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.2;
+        }
+
+        .heading h1 span {
+            color: #60a5fa;
+        }
+
+        .heading p {
+            max-width: 650px;
+            margin: 18px auto 0;
+            color: #a9bad5;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* 4. Team cards grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* 5. Individual member card */
+        .member-card {
+            position: relative;
+            overflow: hidden;
+            padding: 30px 22px;
+            text-align: center;
+            background: linear-gradient(145deg, #122342, #0b1730);
+            border: 1px solid #243b61;
+            border-radius: 18px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-7px);
+            border-color: #60a5fa;
+        }
+
+        /* 6. Member number */
+        .member-number {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            color: #637a9e;
+            font-size: 13px;
+        }
+
+        /* 7. Member initials avatar */
+        .avatar {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            border: 4px solid #263e68;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            box-shadow: 0 0 25px #2563eb35;
+        }
+
+        /* 8. Member name */
+        .member-card h2 {
+            font-size: 20px;
+            line-height: 1.5;
+            color: #f1f5ff;
+            overflow-wrap: anywhere;
+        }
+
+        .role {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background: #17365c;
+            color: #93c5fd;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        .member-description {
+            margin-top: 18px;
+            color: #a9bad5;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        /* 9. Bottom section */
+        .bottom-section {
+            margin-top: 55px;
+            padding: 30px;
+            text-align: center;
+            background: #0e1d38;
+            border: 1px solid #243b61;
+            border-radius: 16px;
+        }
+
+        .bottom-section h2 {
+            color: #60a5fa;
+            margin-bottom: 12px;
+        }
+
+        .bottom-section p {
+            color: #a9bad5;
+            line-height: 1.8;
+        }
+
+        /* 10. Footer */
+        footer {
+            padding: 25px;
+            text-align: center;
+            color: #8295b5;
+            border-top: 1px solid #1c3157;
+            font-size: 14px;
+        }
+
+        /* 11. Tablet layout */
+        @media (max-width: 900px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* 12. Mobile layout */
+        @media (max-width: 600px) {
+            nav {
+                padding: 18px 5%;
+            }
+
+            .container {
+                padding: 40px 18px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heading {
+                margin-bottom: 35px;
+            }
+
+            .member-card {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 13. Navigation -->
+    <nav>
+        <div class="logo">SkillBridge</div>
+
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <!-- 14. Main team section -->
+    <main class="container">
+
+        <section class="heading">
+
+            <span class="tag">MEET OUR TEAM</span>
+
+            <h1>
+                The People Behind<br>
+                <span>SkillBridge</span>
+            </h1>
+
+            <p>
+                We are a team of passionate innovators working
+                together to bridge the gap between skills,
+                learning and career opportunities.
+            </p>
+
+        </section>
+
+        <!-- 15. Team members -->
+        <section class="team-grid">
+
+            <!-- Member 1 -->
+            <div class="member-card">
+
+                <span class="member-number">MEMBER 01</span>
+
+                <div class="avatar">RA</div>
+
+                <h2>RAJ SHEKHAR AZAD</h2>
+
+                <span class="role">Team Member</span>
+
+                <p class="member-description">
+                    Passionate about technology, innovation
+                    and building meaningful solutions.
+                </p>
+
+            </div>
+
+            <!-- Member 2 -->
+            <div class="member-card">
+
+                <span class="member-number">MEMBER 02</span>
+
+                <div class="avatar">AA</div>
+
+                <h2>ADIL ANSARI</h2>
+
+                <span class="role">Team Member</span>
+
+                <p class="member-description">
+                    Working together to develop ideas
+                    and create useful digital solutions.
+                </p>
+
+            </div>
+
+            <!-- Member 3 -->
+            <div class="member-card">
+
+                <span class="member-number">MEMBER 03</span>
+
+                <div class="avatar">KT</div>
+
+                <h2>KRITIKA TIWARI</h2>
+
+                <span class="role">Team Member</span>
+
+                <p class="member-description">
+                    Contributing creativity, collaboration
+                    and fresh ideas to the project.
+                </p>
+
+            </div>
+
+            <!-- Member 4 -->
+            <div class="member-card">
+
+                <span class="member-number">MEMBER 04</span>
+
+                <div class="avatar">AK</div>
+
+                <h2>AMAN KAHAR</h2>
+
+                <span class="role">Team Member</span>
+
+                <p class="member-description">
+                    Collaborating on the project
+                    and supporting the team's goals.
+                </p>
+
+            </div>
+
+            <!-- Member 5 -->
+            <div class="member-card">
+
+                <span class="member-number">MEMBER 05</span>
+                <div class="avatar">HP</div>
+
+                <h2>HARSH PANDEY</h2>
+
+                <span class="role">Team Member</span>
+
+                <p class="member-description">
+                    Bringing teamwork and dedication
+                    to the SkillBridge project.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- 16. Team message -->
+        <section class="bottom-section">
+
+            <h2>One Team. One Vision.</h2>
+
+            <p>
+                Together, we are building SkillBridge —
+                a platform designed to connect skills,
+                learning and career opportunities.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- 17. Footer -->
+    <footer>
+        © 2026 SkillBridge | Built with passion by our team
+    </footer>
+
+</body>
+</html>

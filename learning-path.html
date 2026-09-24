@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Learning Path</title>
+
+    <style>
+        /* 1. Basic page design */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f4ff;
+            color: #222;
+        }
+
+        /* 2. Main container */
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        /* 3. Heading */
+        h1 {
+            text-align: center;
+            color: #2457d6;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 4. Career selection */
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 13px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        /* 5. Buttons */
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 7px;
+            background: #2457d6;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1744b5;
+        }
+
+        .generate-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* 6. Progress section */
+        .progress-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f4f7ff;
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 14px;
+            margin-top: 12px;
+            background: #dce3f5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #2457d6;
+            transition: width 0.3s;
+        }
+
+        /* 7. Learning cards */
+        .roadmap {
+            margin-top: 25px;
+        }
+
+        .step-card {
+            margin-top: 15px;
+            padding: 20px;
+            border: 1px solid #dce3f5;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .step-card h3 {
+            color: #2457d6;
+            margin-top: 0;
+        }
+
+        .step-card p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .step-card label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .step-card input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+
+        .step-card.completed {
+            background: #effaf2;
+            border-color: #a7dfb5;
+        }
+
+        /* 8. Navigation links */
+        .back-link {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            color: #2457d6;
+            text-decoration: none;
+        }
+
+        /* 9. Mobile layout */
+        @media (max-width: 650px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 10. Main page -->
+    <div class="container">
+
+        <h1>My Learning Path</h1>
+
+        <p class="subtitle">
+            Follow your learning roadmap and track
+            your progress with SkillBridge.
+        </p>
+
+        <!-- 11. Career selection -->
+        <label for="career">Select Your Career Goal</label>
+        <select id="career">
+            <option value="web">Web Developer</option>
+            <option value="software">Software Developer</option>
+            <option value="ai">AI/ML Engineer</option>
+            <option value="data">Data Scientist</option>
+            <option value="cyber">Cybersecurity</option>
+        </select>
+
+        <button
+            type="button"
+            class="generate-btn"
+            onclick="generatePath()">
+            Generate Learning Path
+        </button>
+
+        <!-- 12. Progress section -->
+        <div class="progress-box">
+
+            <h3>📈 Your Progress</h3>
+
+            <p id="progressText">0% Completed</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+        </div>
+
+        <!-- 13. Roadmap cards -->
+        <div class="roadmap" id="roadmap"></div>
+
+        <!-- 14. Navigation links -->
+        <a href="skill-analysis.html" class="back-link">
+            ← Back to Skill Analysis
+        </a>
+
+        <a href="mentorship.html" class="back-link">
+            Continue to Mentorship →
+        </a>
+
+    </div>
+
+    <!-- 15. JavaScript -->
+    <script>
+
+        // 16. Learning roadmaps
+        const paths = {
+
+            web: [
+                {
+                    title: "Step 1: HTML Basics",
+                    description: "Learn HTML tags, headings, links, forms and page structure."
+                },
+                {
+                    title: "Step 2: CSS Fundamentals",
+                    description: "Learn colors, layouts, Flexbox, Grid and responsive design."
+                },
+                {
+                    title: "Step 3: JavaScript",
+                    description: "Learn variables, functions, events, arrays and DOM manipulation."
+                },
+                {
+                    title: "Step 4: React.js",
+                    description: "Learn components, props, state and interactive interfaces."
+                },
+                {
+                    title: "Step 5: Build a Project",
+                    description: "Create a portfolio website or a small web application."
+                }
+            ],
+
+            software: [
+                {
+                    title: "Step 1: Programming Basics",
+                    description: "Learn C++ variables, data types, conditions and loops."
+                },
+                {
+                    title: "Step 2: Functions and Arrays",
+                    description: "Practice functions, arrays, strings and pointers."
+                },
+                {
+                    title: "Step 3: Data Structures",
+                    description: "Learn arrays, linked lists, stacks, queues and trees."
+                },
+                {
+                    title: "Step 4: Algorithms",
+                    description: "Practice searching, sorting and problem-solving."
+                },
+                {
+                    title: "Step 5: Build a Project",
+                    description: "Create a small application using programming skills."
+                }
+            ],
+
+            ai: [
+                {
+                    title: "Step 1: Python Basics",
+                    description: "Learn variables, loops, functions and data structures in Python."
+                },
+                {
+                    title: "Step 2: Mathematics",
+                    description: "Study linear algebra, probability and basic statistics."
+                },
+                {
+                    title: "Step 3: NumPy and Pandas",
+                    description: "Learn data handling and numerical operations."
+                },
+                {
+                    title: "Step 4: Machine Learning",
+                    description: "Understand model training and evaluation."
+                },
+                {
+                    title: "Step 5: Build an AI Project",
+                    description: "Create a beginner-friendly machine learning project."
+                }
+            ],
+            data: [
+                {
+                    title: "Step 1: Python Basics",
+                    description: "Learn Python fundamentals and programming."
+                },
+                {
+                    title: "Step 2: SQL",
+                    description: "Learn queries, filtering, joins and databases."
+                },
+                {
+                    title: "Step 3: Data Analysis",
+                    description: "Use Pandas and NumPy to work with datasets."
+                },
+                {
+                    title: "Step 4: Data Visualization",
+                    description: "Learn charts, graphs and data storytelling."
+                },
+                {
+                    title: "Step 5: Build a Data Project",
+                    description: "Analyze a dataset and present your findings."
+                }
+            ],
+
+            cyber: [
+                {
+                    title: "Step 1: Networking Basics",
+                    description: "Learn IP addresses, DNS, HTTP and network fundamentals."
+                },
+                {
+                    title: "Step 2: Linux Basics",
+                    description: "Learn Linux commands, files and permissions."
+                },
+                {
+                    title: "Step 3: Python Basics",
+                    description: "Learn Python programming and basic automation."
+                },
+                {
+                    title: "Step 4: Security Fundamentals",
+                    description: "Study authentication, encryption and safe security practices."
+                },
+                {
+                    title: "Step 5: Build a Safe Lab Project",
+                    description: "Practice security concepts in a legal learning environment."
+                }
+            ]
+        };
+
+        // 17. Generate the learning roadmap
+        function generatePath() {
+
+            const career =
+                document.getElementById("career").value;
+
+            const roadmap =
+                document.getElementById("roadmap");
+
+            // Clear the old roadmap
+            roadmap.innerHTML = "";
+
+            // Get selected career steps
+            const steps = paths[career];
+
+            // Create a card for each step
+            steps.forEach(function(step) {
+
+                // Create a new card
+                const card = document.createElement("div");
+
+                card.className = "step-card";
+
+                // Add heading
+                const heading = document.createElement("h3");
+                heading.textContent = step.title;
+                card.appendChild(heading);
+
+                // Add description
+                const paragraph = document.createElement("p");
+                paragraph.textContent = step.description;
+                card.appendChild(paragraph);
+
+                // Create label
+                const label = document.createElement("label");
+
+                // Create checkbox
+                const checkbox = document.createElement("input");
+
+                checkbox.type = "checkbox";
+                checkbox.className = "step-check";
+
+                // Update progress when checked
+                checkbox.addEventListener("change", updateProgress);
+
+                // Add checkbox and text
+                label.appendChild(checkbox);
+                label.appendChild(
+                    document.createTextNode("Mark as Completed")
+                );
+
+                card.appendChild(label);
+
+                // Add card to roadmap
+                roadmap.appendChild(card);
+
+            });
+
+            // Reset progress
+            updateProgress();
+        }
+
+        // 18. Update progress bar
+        function updateProgress() {
+
+            const checkboxes =
+                document.querySelectorAll(".step-check");
+
+            const total = checkboxes.length;
+
+            const completed =
+                document.querySelectorAll(".step-check:checked").length;
+                const percentage = total === 0
+                ? 0
+                : Math.round((completed / total) * 100);
+
+            // Update progress text
+            document.getElementById("progressText").textContent =
+                percentage + "% Completed (" +
+                completed + "/" + total + " steps)";
+
+            // Update progress bar
+            document.getElementById("progressFill").style.width =
+                percentage + "%";
+
+            // Highlight completed cards
+            checkboxes.forEach(function(checkbox) {
+
+                const card = checkbox.closest(".step-card");
+
+                if (checkbox.checked) {
+                    card.classList.add("completed");
+                } else {
+                    card.classList.remove("completed");
+                }
+
+            });
+        }
+
+        // 19. Show default roadmap
+        generatePath();
+
+    </script>
+
+</body>
+</html>

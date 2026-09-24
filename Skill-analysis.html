@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Skill Analysis</title>
+
+    <style>
+        /* 1. Basic page design */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f4ff;
+            color: #222;
+        }
+
+        /* 2. Main container */
+        .container {
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        /* 3. Heading */
+        h1 {
+            text-align: center;
+            color: #2457d6;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 4. Labels and fields */
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 13px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        /* 5. Analyze button */
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 22px;
+            border: none;
+            border-radius: 7px;
+            background: #2457d6;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1744b5;
+        }
+
+        /* 6. Result box */
+        .result {
+            display: none;
+            margin-top: 30px;
+            padding: 22px;
+            background: #f4f7ff;
+            border: 1px solid #d7e2ff;
+            border-radius: 10px;
+        }
+
+        .result h2 {
+            color: #2457d6;
+        }
+
+        .result li {
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 22px;
+            text-align: center;
+            color: #2457d6;
+            text-decoration: none;
+        }
+
+        /* 7. Mobile screen */
+        @media (max-width: 650px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 8. Main section -->
+    <div class="container">
+
+        <h1>Skill Analysis</h1>
+
+        <p class="subtitle">
+            Discover your skill gaps and find areas to improve
+            with SkillBridge.
+        </p>
+
+        <!-- 9. Analysis form -->
+        <form id="analysisForm">
+
+            <!-- 10. Enter skills -->
+            <label for="skills">Your Current Skills</label>
+
+            <input
+                type="text"
+                id="skills"
+                placeholder="Example: HTML, CSS, Python"
+                required
+            >
+
+            <!-- 11. Select career goal -->
+            <label for="goal">Your Career Goal</label>
+
+            <select id="goal" required>
+                <option value="">Select Your Career Goal</option>
+                <option value="web">Web Developer</option>
+                <option value="software">Software Developer</option>
+                <option value="ai">AI/ML Engineer</option>
+                <option value="data">Data Scientist</option>
+                <option value="cyber">Cybersecurity</option>
+            </select>
+
+            <!-- 12. Analyze button -->
+            <button type="submit">
+                Analyze My Skills
+            </button>
+
+        </form>
+
+        <!-- 13. Analysis result -->
+        <div class="result" id="result">
+
+            <h2>📊 Your Skill Analysis</h2>
+
+            <p id="summary"></p>
+
+            <h3>✅ Skills You Have</h3>
+            <ul id="haveList"></ul>
+
+            <h3>🎯 Skills to Improve</h3>
+            <ul id="gapList"></ul>
+            <!-- 14. Next page button -->
+            <button type="button" onclick="goToLearningPath()">
+                View My Learning Path →
+            </button>
+
+        </div>
+
+        <!-- 15. Back to profile -->
+        <a href="profile.html" class="back-link">
+            ← Back to Profile
+        </a>
+
+    </div>
+
+    <!-- 16. JavaScript -->
+    <script>
+
+        // Get the form
+        const form = document.getElementById("analysisForm");
+
+        // Run when Analyze button is clicked
+        form.addEventListener("submit", function(event) {
+
+            // Stop page reload
+            event.preventDefault();
+
+            // Read skills entered by user
+            const skillsText =
+                document.getElementById("skills").value;
+
+            // Convert skills into a list
+            const skills = skillsText
+                .toLowerCase()
+                .split(",")
+                .map(skill => skill.trim())
+                .filter(skill => skill !== "");
+
+            // Read career goal
+            const goal =
+                document.getElementById("goal").value;
+
+            // Skills required for each career
+            const careerSkills = {
+                web: ["html", "css", "javascript", "react"],
+                software: ["c++", "dsa", "problem solving", "git"],
+                ai: ["python", "math", "machine learning", "numpy"],
+                data: ["python", "sql", "pandas", "statistics"],
+                cyber: ["networking", "linux", "python", "security basics"]
+            };
+
+            // Get skills for selected career
+            const requiredSkills = careerSkills[goal];
+
+            // Find skills user already has
+            const have = requiredSkills.filter(skill =>
+                skills.includes(skill)
+            );
+
+            // Find missing skills
+            const gaps = requiredSkills.filter(skill =>
+                !skills.includes(skill)
+            );
+
+            // Show summary
+            document.getElementById("summary").textContent =
+                "Your selected career goal is " +
+                document.getElementById("goal")
+                    .selectedOptions[0].text +
+                ". This is a basic demo analysis based on your input.";
+
+            // Display skills user has
+            const haveList = document.getElementById("haveList");
+            haveList.innerHTML = "";
+
+            if (have.length === 0) {
+                haveList.innerHTML =
+                    "<li>No matching skills found yet.</li>";
+            } else {
+                have.forEach(function(skill) {
+                    const li = document.createElement("li");
+                    li.textContent = skill;
+                    haveList.appendChild(li);
+                });
+            }
+
+            // Display skill gaps
+            const gapList = document.getElementById("gapList");
+            gapList.innerHTML = "";
+
+            gaps.forEach(function(skill) {
+                const li = document.createElement("li");
+                li.textContent = skill;
+                gapList.appendChild(li);
+            });
+
+            if (gaps.length === 0) {
+                gapList.innerHTML =
+                    "<li>You have all the skills in this demo list!</li>";
+            }
+
+            // Show result section
+            document.getElementById("result").style.display = "block";
+
+        });
+
+        // Open learning path page
+        function goToLearningPath() {
+            window.location.href = "learning-path.html";
+        }
+
+    </script>
+
+</body>
+</html>

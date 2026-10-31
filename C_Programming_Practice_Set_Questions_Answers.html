@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C Programming Practice Set — Questions & Answers</title>
+<style>
+  :root {
+    --ink: #182033;
+    --muted: #64748b;
+    --line: #dbe3ef;
+    --accent: #4f46e5;
+    --accent2: #0891b2;
+    --paper: #ffffff;
+    --soft: #f4f7ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #edf1f8; color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif; line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(130deg, #20245f, #4f46e5 55%, #0891b2);
+    color: white; padding: 30px 18px; text-align: center;
+  }
+  header h1 { margin: 0 0 8px; font-size: clamp(1.5rem, 4vw, 2.3rem); }
+  header p { margin: 4px 0; opacity: .95; }
+  .toolbar {
+    position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 10px; padding: 12px; background: #fff;
+    border-bottom: 1px solid var(--line); box-shadow: 0 3px 12px #17255412;
+  }
+  button, select, input {
+    font: inherit; border: 1px solid #cbd5e1; border-radius: 9px;
+    padding: 9px 12px; background: white; color: var(--ink);
+  }
+  button { cursor: pointer; font-weight: 700; }
+  button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+  button:hover { filter: brightness(.97); }
+  #search { min-width: min(280px, 90vw); }
+  main { max-width: 1050px; margin: 24px auto; padding: 0 14px 40px; }
+  .intro {
+    background: white; border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px; margin-bottom: 18px;
+  }
+  .progress-wrap { height: 8px; background: #e2e8f0; border-radius: 20px; overflow: hidden; margin-top: 10px; }
+  #progress { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .2s; }
+  .section-title { margin: 28px 0 12px; padding: 11px 14px; color: #28266f; background: #e7eaff; border-left: 5px solid var(--accent); border-radius: 8px; }
+  .qa {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 13px;
+    margin: 12px 0; overflow: hidden; box-shadow: 0 3px 10px #0f172a08;
+  }
+  .qhead { padding: 15px 16px; font-weight: 700; display: flex; gap: 10px; align-items: flex-start; }
+  .num { color: var(--accent); min-width: 42px; }
+  .answer { border-top: 1px solid var(--line); padding: 15px 18px 18px; background: #fcfdff; }
+  .answer h4 { margin: 12px 0 5px; }
+  .answer p { margin: 7px 0; }
+  .answer ul, .answer ol { margin-top: 6px; }
+  pre {
+    white-space: pre-wrap; overflow-wrap: anywhere; background: #101827; color: #e5eefc;
+    padding: 14px; border-radius: 9px; overflow-x: auto; font-size: .91rem;
+  }
+  code { font-family: Consolas, "Courier New", monospace; }
+  .tag { display: inline-block; font-size: .78rem; padding: 3px 8px; border-radius: 99px; background: #e0f2fe; color: #075985; margin-left: 5px; }
+  .hidden { display: none !important; }
+  footer { text-align: center; padding: 25px; color: var(--muted); }
+  @media print {
+    body { background: white; }
+    header { background: white; color: black; padding: 10px; }
+    .toolbar, .no-print { display: none !important; }
+    main { max-width: none; margin: 0; padding: 0; }
+    .qa, .intro { break-inside: avoid; box-shadow: none; }
+    .section-title { break-after: avoid; }
+    pre { white-space: pre-wrap; color: black; background: #f2f2f2; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>C Programming — Practice Set</h1>
+  <p>30 Questions with Answers & Complete C Programs</p>
+  <p>B.Tech First Semester | Beginner Revision</p>
+</header>
+
+<div class="toolbar no-print">
+  <input id="search" type="search" placeholder="Search question, topic or answer…">
+  <select id="sectionFilter" aria-label="Filter section">
+    <option value="all">All Sections</option>
+    <option value="A">Section A — Q1–Q8</option>
+    <option value="B">Section B — Q9–Q16</option>
+    <option value="C">Section C — Q17–Q21</option>
+    <option value="D">Section D — Q22–Q30</option>
+  </select>
+  <button class="primary" id="expandAll">Show All Answers</button>
+  <button id="collapseAll">Hide All Answers</button>
+  <button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<main>
+  <div class="intro">
+    <strong>How to use:</strong> Search a question or topic, filter by section, and show/hide answers. For programming questions, the full C program and sample output are included.
+    <div class="progress-wrap"><div id="progress"></div></div>
+    <small id="progressText">0 of 30 answers marked as revised.</small>
+  </div>
+  <div id="content"></div>
+</main>
+<footer>Made for C Programming revision • HTML + CSS + JavaScript in one file</footer>
+
+<script>
+const questions = [
+{n:1,s:"A",q:"Write any two features and any two applications of the C programming language.",a:`<h4>Features</h4><ol><li>C is a structured programming language.</li><li>C is fast and efficient.</li></ol><h4>Applications</h4><ol><li>Operating-system development.</li><li>Embedded-systems development.</li></ol>`},
+{n:2,s:"A",q:"What is a token in C? Name any four types of tokens and give one example of each.",a:`<p>A <b>token</b> is the smallest individual unit of a C program.</p><ul><li><b>Keyword:</b> <code>int</code></li><li><b>Identifier:</b> <code>total</code></li><li><b>Constant:</b> <code>10</code></li><li><b>Operator:</b> <code>+</code></li></ul>`},
+{n:3,s:"A",q:"What is an identifier? Write two valid and two invalid identifier examples.",a:`<p>An <b>identifier</b> is a name used for a variable, function, or another program element.</p><p><b>Valid:</b> <code>total</code>, <code>student_marks</code></p><p><b>Invalid:</b> <code>2marks</code> (starts with a digit), <code>student-name</code> (contains a hyphen).</p>`},
+{n:4,s:"A",q:"Differentiate between the assignment operator (=) and equality operator (==), with examples.",a:`<p><code>=</code> assigns a value; <code>==</code> compares two values.</p><pre><code>int a = 10;       // assignment\nif (a == 10)      // comparison\n    printf("Equal");</code></pre><p><b>Output:</b> <code>Equal</code></p>`},
+{n:5,s:"A",q:"What is the purpose of the null character '\\\\0' in a C string?",a:`<p>The null character <code>'\\\\0'</code> marks the end of a C string. For example, <code>char str[] = "Hello";</code> is stored with a terminating null character after <code>o</code>.</p>`},
+{n:6,s:"A",q:"Name the header file required for strlen() and write the purpose of any two string-handling functions.",a:`<p>Header file: <code>#include &lt;string.h&gt;</code></p><ul><li><code>strlen(s)</code>: returns string length excluding <code>'\\\\0'</code>.</li><li><code>strcpy(dest, src)</code>: copies <code>src</code> into <code>dest</code>, which must have enough space.</li></ul>`},
+{n:7,s:"A",q:"Differentiate between while and do-while loops.",a:`<p><code>while</code> checks its condition before the body and may run zero times. <code>do-while</code> checks the condition after the body, so it runs at least once.</p><pre><code>int i = 1;\nwhile (i <= 3) {\n    printf("%d ", i);\n    i++;\n}</code></pre><p>Output: <code>1 2 3</code></p>`},
+{n:8,s:"A",q:"What is a two-dimensional array? Write the declaration syntax for a 3 × 3 integer array.",a:`<p>A two-dimensional array stores elements in rows and columns.</p><pre><code>int a[3][3];\n\nint b[3][3] = {\n    {1, 2, 3},\n    {4, 5, 6},\n    {7, 8, 9}\n};</code></pre>`},
+{n:9,s:"B",q:"Explain the basic structure of a C program. Briefly describe the compilation and execution process.",a:`<p>A typical program includes header files, the <code>main()</code> function, statements, and a return statement.</p><pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    printf("Hello World");\n    return 0;\n}</code></pre><p><b>Process:</b> preprocessing → compilation → assembly → linking → execution.</p><p>Output: <code>Hello World</code></p>`},
+{n:10,s:"B",q:"Explain the basic data types in C. What are type modifiers? Give suitable examples.",a:`<p><b>Basic types:</b> <code>int</code> (integers), <code>char</code> (characters), <code>float</code> and <code>double</code> (real numbers), <code>void</code> (no value).</p><p><b>Type modifiers</b> alter the range or representation of certain types: <code>short</code>, <code>long</code>, <code>signed</code>, <code>unsigned</code>.</p><pre><code>short int a = 10;\nlong int b = 100000L;\nunsigned int c = 20;</code></pre>`},
+{n:11,s:"B",q:"Explain arithmetic, relational and logical operators with one example of each. What is operator precedence?",a:`<ul><li><b>Arithmetic:</b> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>. Example: <code>10 + 5</code> gives 15.</li><li><b>Relational:</b> <code>&lt;</code>, <code>&gt;</code>, <code>==</code>, <code>!=</code>. Example: <code>10 &gt; 5</code> is true (1).</li><li><b>Logical:</b> <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>. Example: <code>(a &gt; 5 &amp;&amp; a &lt; 20)</code>.</li></ul><p><b>Operator precedence</b> determines which operators are evaluated first. For example, <code>2 + 3 * 4</code> equals 14.</p>`},
+{n:12,s:"B",q:"Differentiate between scanf() and fgets() for reading input. State one advantage of fgets().",a:`<p><code>scanf("%s", name)</code> usually stops at whitespace, while <code>fgets(name, sizeof name, stdin)</code> can read a line containing spaces and limits how many characters it reads.</p><pre><code>char name[30];\nfgets(name, sizeof name, stdin);</code></pre><p>Advantage: can read spaces in a line and helps avoid writing beyond the buffer.</p>`},
+{n:13,s:"B",q:"Differentiate between break and continue with a small example or explanation.",a:`<p><code>break</code> exits the nearest loop or switch. <code>continue</code> skips the rest of the current loop iteration.</p><pre><code>for (int i = 1; i <= 5; i++) {\n    if (i == 3) continue;\n    printf("%d ", i);\n}</code></pre><p>Output: <code>1 2 4 5</code></p>`},
+{n:14,s:"B",q:"Explain the if-else-if ladder with syntax and an example to assign grades based on marks.",a:`<p>An <code>if-else-if</code> ladder tests conditions in order; the first true condition's block runs.</p><pre><code>if (marks &gt;= 90) printf("Grade A");\nelse if (marks &gt;= 75) printf("Grade B");\nelse if (marks &gt;= 60) printf("Grade C");\nelse if (marks &gt;= 40) printf("Grade D");\nelse printf("Grade F");</code></pre><p>Example: marks = 85 → <code>Grade B</code>. These ranges are illustrative.</p>`},
+{n:15,s:"B",q:"Explain one-dimensional array declaration, initialization and traversal with an example.",a:`<p><b>Declaration:</b> <code>int a[5];</code></p><p><b>Initialization:</b> <code>int a[5] = {10, 20, 30, 40, 50};</code></p><p><b>Traversal:</b> visiting each element, usually with a loop.</p><pre><code>int a[5] = {10, 20, 30, 40, 50};\nfor (int i = 0; i &lt; 5; i++)\n    printf("%d ", a[i]);</code></pre><p>Output: <code>10 20 30 40 50</code></p>`},
+{n:16,s:"B",q:"Explain any three string functions among strlen(), strcpy(), strcat() and strcmp(). Include their purposes.",a:`<ul><li><code>strlen(s)</code>: returns length excluding the null character.</li><li><code>strcpy(dest, src)</code>: copies a string into a destination with enough space.</li><li><code>strcat(dest, src)</code>: appends one string to another; destination needs enough space.</li></ul><p>These functions are declared in <code>&lt;string.h&gt;</code>.</p>`},
+{n:17,s:"C",q:"Write the output: int a[] = {10, 20, 30, 40, 50}; for (int i = 4; i >= 0; i--) printf(\"%d \", a[i]);",a:`<p>The loop visits indices 4, 3, 2, 1, 0.</p><p><b>Output:</b></p><pre><code>50 40 30 20 10</code></pre>`},
+{n:18,s:"C",q:"Write the output for the 2 × 3 array when values divisible by 20 are printed.",a:`<p>Array: <code>{{10,20,30},{40,50,60}}</code>. Values divisible by 20 are 20, 40, and 60.</p><p><b>Output:</b></p><pre><code>20 40 60</code></pre>`},
+{n:19,s:"C",q:"What is the output? int x = 7 / 2; printf(\"%d\", x);",a:`<p>Both operands are integers, so integer division discards the fractional part and stores 3.</p><p><b>Output:</b> <code>3</code></p>`},
+{n:20,s:"C",q:"Write the output for a loop from 1 to 5 that uses continue when i == 3.",a:`<p>When <code>i == 3</code>, printing is skipped.</p><p><b>Output:</b></p><pre><code>1 2 4 5</code></pre>`},
+{n:21,s:"C",q:"Find the output: char s[] = \"C language\"; printf(\"%d\", (int)strlen(s));",a:`<p><code>"C language"</code> has 10 characters, including the space. <code>strlen()</code> excludes the terminating null character.</p><p><b>Output:</b> <code>10</code></p>`},
+{n:22,s:"D",q:"Write a menu-driven calculator using switch-case for addition, subtraction, multiplication and division. Handle division by zero.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    int choice;\n    double a, b;\n    printf("1. Addition\\\\n2. Subtraction\\\\n3. Multiplication\\\\n4. Division\\\\n");\n    printf("Enter choice: ");\n    scanf("%d", &amp;choice);\n    printf("Enter two numbers: ");\n    scanf("%lf %lf", &amp;a, &amp;b);\n    switch (choice) {\n        case 1: printf("Result = %.2f", a + b); break;\n        case 2: printf("Result = %.2f", a - b); break;\n        case 3: printf("Result = %.2f", a * b); break;\n        case 4:\n            if (b == 0) printf("Division by zero is not allowed.");\n            else printf("Result = %.2f", a / b);\n            break;\n        default: printf("Invalid choice.");\n    }\n    return 0;\n}</code></pre><p><b>Sample:</b> choice 1, values 10 and 5 → <code>Result = 15.00</code>.</p>`},
+{n:23,s:"D",q:"Write a program to input n integers into a one-dimensional array and print their sum, average, maximum and minimum values.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    int n, a[100], sum = 0, max, min;\n    printf("Enter n (1-100): ");\n    scanf("%d", &amp;n);\n    if (n &lt; 1 || n &gt; 100) {\n        printf("Invalid n");\n        return 0;\n    }\n    for (int i = 0; i &lt; n; i++) {\n        scanf("%d", &amp;a[i]);\n        sum += a[i];\n    }\n    max = min = a[0];\n    for (int i = 1; i &lt; n; i++) {\n        if (a[i] &gt; max) max = a[i];\n        if (a[i] &lt; min) min = a[i];\n    }\n    printf("Sum = %d\\\\n", sum);\n    printf("Average = %.2f\\\\n", (double)sum / n);\n    printf("Maximum = %d\\\\nMinimum = %d", max, min);\n    return 0;\n}</code></pre><p><b>Sample input:</b> <code>5</code> then <code>10 20 30 40 50</code>.</p><p><b>Output:</b> Sum = 150; Average = 30.00; Maximum = 50; Minimum = 10.</p>`},
+{n:24,s:"D",q:"Write a program to input five integers and display only the even numbers using a loop.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    int a[5];\n    printf("Enter five integers: ");\n    for (int i = 0; i &lt; 5; i++) scanf("%d", &amp;a[i]);\n    printf("Even numbers: ");\n    for (int i = 0; i &lt; 5; i++)\n        if (a[i] % 2 == 0) printf("%d ", a[i]);\n    return 0;\n}</code></pre><p><b>Sample input:</b> <code>10 15 20 25 30</code></p><p><b>Output:</b> <code>Even numbers: 10 20 30</code></p>`},
+{n:25,s:"D",q:"Write a program to perform Linear Search on an array. Print the index if the key is found; otherwise print an appropriate message.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    int a[5], key, found = 0;\n    printf("Enter five integers: ");\n    for (int i = 0; i &lt; 5; i++) scanf("%d", &amp;a[i]);\n    printf("Enter key: ");\n    scanf("%d", &amp;key);\n    for (int i = 0; i &lt; 5; i++) {\n        if (a[i] == key) {\n            printf("Element found at index %d", i);\n            found = 1;\n            break;\n        }\n    }\n    if (!found) printf("Element not found.");\n    return 0;\n}</code></pre><p><b>Sample:</b> array <code>10 20 30 40 50</code>, key <code>30</code> → <code>Element found at index 2</code>.</p>`},
+{n:26,s:"D",q:"Write a program to sort five integers in ascending order using Bubble Sort.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    int a[5], temp;\n    printf("Enter five integers: ");\n    for (int i = 0; i &lt; 5; i++) scanf("%d", &amp;a[i]);\n    for (int i = 0; i &lt; 4; i++) {\n        for (int j = 0; j &lt; 4 - i; j++) {\n            if (a[j] &gt; a[j + 1]) {\n                temp = a[j];\n                a[j] = a[j + 1];\n                a[j + 1] = temp;\n            }\n        }\n    }\n    printf("Sorted array: ");\n    for (int i = 0; i &lt; 5; i++) printf("%d ", a[i]);\n    return 0;\n}</code></pre><p><b>Sample input:</b> <code>50 20 40 10 30</code></p><p><b>Output:</b> <code>10 20 30 40 50</code></p>`},
+{n:27,s:"D",q:"Write a program to input a string and count vowels and consonants. Assume the input contains alphabetic characters and spaces.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    char str[200];\n    int vowels = 0, consonants = 0;\n    printf("Enter a string: ");\n    fgets(str, sizeof str, stdin);\n    for (int i = 0; str[i] != '\\\\0'; i++) {\n        char ch = str[i];\n        if (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') ch += 'a' - 'A';\n        if (ch &gt;= 'a' &amp;&amp; ch &lt;= 'z') {\n            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') vowels++;\n            else consonants++;\n        }\n    }\n    printf("Vowels = %d\\\\nConsonants = %d", vowels, consonants);\n    return 0;\n}</code></pre><p><b>Sample input:</b> <code>Hello World</code></p><p><b>Output:</b> Vowels = 3; Consonants = 7.</p>`},
+{n:28,s:"D",q:"Write a program to count the length of a string without using strlen().",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    char str[200];\n    int length = 0;\n    printf("Enter a string: ");\n    fgets(str, sizeof str, stdin);\n    while (str[length] != '\\\\0' &amp;&amp; str[length] != '\\\\n') length++;\n    printf("Length of string = %d", length);\n    return 0;\n}</code></pre><p><b>Sample input:</b> <code>Hello</code></p><p><b>Output:</b> <code>Length of string = 5</code></p>`},
+{n:29,s:"D",q:"Write a program to input two 2 × 2 matrices and display their sum.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    int a[2][2], b[2][2], sum[2][2];\n    printf("Enter first matrix (4 values): ");\n    for (int i = 0; i &lt; 2; i++)\n        for (int j = 0; j &lt; 2; j++) scanf("%d", &amp;a[i][j]);\n    printf("Enter second matrix (4 values): ");\n    for (int i = 0; i &lt; 2; i++)\n        for (int j = 0; j &lt; 2; j++) scanf("%d", &amp;b[i][j]);\n    for (int i = 0; i &lt; 2; i++)\n        for (int j = 0; j &lt; 2; j++) sum[i][j] = a[i][j] + b[i][j];\n    printf("Sum of matrices:\\\\n");\n    for (int i = 0; i &lt; 2; i++) {\n        for (int j = 0; j &lt; 2; j++) printf("%d ", sum[i][j]);\n        printf("\\\\n");\n    }\n    return 0;\n}</code></pre><p><b>Sample:</b> [1 2; 3 4] + [5 6; 7 8] = [6 8; 10 12].</p>`},
+{n:30,s:"D",q:"Write a program to find and display the transpose of a 3 × 3 matrix.",a:`<pre><code>#include &lt;stdio.h&gt;\nint main(void) {\n    int a[3][3], t[3][3];\n    printf("Enter 9 matrix elements: ");\n    for (int i = 0; i &lt; 3; i++)\n        for (int j = 0; j &lt; 3; j++) scanf("%d", &amp;a[i][j]);\n    for (int i = 0; i &lt; 3; i++)\n        for (int j = 0; j &lt; 3; j++) t[j][i] = a[i][j];\n    printf("Transpose:\\\\n");\n    for (int i = 0; i &lt; 3; i++) {\n        for (int j = 0; j &lt; 3; j++) printf("%d ", t[i][j]);\n        printf("\\\\n");\n    }\n    return 0;\n}</code></pre><p><b>Rule:</b> <code>transpose[j][i] = a[i][j]</code>; rows become columns.</p><p>For matrix <code>1 2 3 / 4 5 6 / 7 8 9</code>, transpose is <code>1 4 7 / 2 5 8 / 3 6 9</code>.</p>`}
+];
+
+const content = document.getElementById("content");
+const labels = {
+  A: "Section A — Very Short Answer Questions (Q1–Q8)",
+  B: "Section B — Short Answer / Conceptual Questions (Q9–Q16)",
+  C: "Section C — Output-Based Questions (Q17–Q21)",
+  D: "Section D — Programming Questions (Q22–Q30)"
+};
+let revised = new Set();
+
+function render() {
+  const query = document.getElementById("search").value.toLowerCase().trim();
+  const section = document.getElementById("sectionFilter").value;
+  content.innerHTML = "";
+  for (const sec of ["A","B","C","D"]) {
+    const items = questions.filter(item => item.s === sec &&
+      (section === "all" || section === sec) &&
+      (!query || (item.q + " " + item.a + " Q" + item.n).toLowerCase().includes(query)));
+    if (!items.length) continue;
+    const title = document.createElement("h2");
+    title.className = "section-title";
+    title.textContent = labels[sec];
+    content.appendChild(title);
+    for (const item of items) {
+      const card = document.createElement("article");
+      card.className = "qa";
+      card.innerHTML = `<div class="qhead"><span class="num">Q${item.n}</span><span>${item.q}</span><span class="tag">Section ${item.s}</span></div>
+        <div class="answer"><strong>Answer / Solution</strong>${item.a}
+        <label class="no-print" style="display:block;margin-top:14px"><input type="checkbox" data-revised="${item.n}" ${revised.has(item.n) ? "checked" : ""}> Mark as revised</label></div>`;
+      content.appendChild(card);
+    }
+  }
+  updateProgress();
+}
+function updateProgress() {
+  document.getElementById("progress").style.width = (revised.size / questions.length * 100) + "%";
+  document.getElementById("progressText").textContent = `${revised.size} of ${questions.length} answers marked as revised.`;
+}
+content.addEventListener("change", e => {
+  const n = Number(e.target.dataset.revised);
+  if (!n) return;
+  if (e.target.checked) revised.add(n); else revised.delete(n);
+  updateProgress();
+});
+document.getElementById("search").addEventListener("input", render);
+document.getElementById("sectionFilter").addEventListener("change", render);
+document.getElementById("expandAll").addEventListener("click", () => {
+  document.querySelectorAll(".answer").forEach(el => el.classList.remove("hidden"));
+});
+document.getElementById("collapseAll").addEventListener("click", () => {
+  document.querySelectorAll(".answer").forEach(el => el.classList.add("hidden"));
+});
+// Answers remain visible by default; hide/show buttons are supported via class toggling.
+render();
+</script>
+</body>
+</html>
